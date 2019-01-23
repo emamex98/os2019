@@ -11,6 +11,6 @@ qemu -> para crear la maquina virtual
 ## Conceptos
 Sistema operativo consiste de dos partes: kernel y las aplicaciones del sistema
 
-# Que aprendí:
+## Que aprendí:
 - A compilar con make
 - A iniciar el sistema operativo
