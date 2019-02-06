@@ -19,5 +19,8 @@ Crear dos llamadas a sistema: una para apagar y otra para reiniciar, así como c
 + Es la forma que el HW interactua con el CPU
 
 ## ¿Qué aprendí?
++ Crear llamadas a sistema con sus respectivos programas y declaraciones en el header
++ Las llamadas que implementamos son para apagar y reiniciar la máquina virtual.
 
 ## URL del commit:
+https://github.com/emamex98/os2019/commit/c15358010db858a963867c48430de142ea071120
