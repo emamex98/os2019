@@ -23,3 +23,5 @@
 
 #define SYS_shutdown 22
 #define SYS_reboot 23
+#define SYS_setpriority 24
+#define SYS_getpriority 25
