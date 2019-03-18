@@ -19,5 +19,12 @@
     - Restaura el PC y la dirección del nuevo proceso.
 
 ## ¿Qué aprendí?
+- Como funciona un planificador de procesos
+- Implementar funciones para cambiar y consultar prioridades de procesos
 
 ## URL del commit:
+https://github.com/emamex98/os2019/commit/61b6032138d4b111295019f84d1da2d37267a47c
+
+## ¿Cómo se relaciona los conceptos anteriores?
+- Llamadas a sistema
+- Procesos
