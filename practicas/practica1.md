@@ -24,3 +24,4 @@ Crear dos llamadas a sistema: una para apagar y otra para reiniciar, así como c
 
 ## URL del commit:
 https://github.com/emamex98/os2019/commit/c15358010db858a963867c48430de142ea071120
+https://github.com/emamex98/os2019/commit/bd49ff2ec90b29d7f99c06297631c9a39f0e6f43
