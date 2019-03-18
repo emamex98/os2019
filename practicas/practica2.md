@@ -1,5 +1,3 @@
-PRACTICA 2
-
 ## Objetivo
 Modificar al programa shell (sh.c) para regresar al comando anterior.
 
@@ -15,7 +13,13 @@ Modificar al programa shell (sh.c) para regresar al comando anterior.
     + El proceso hijo manda a llamar a exec para ejecutar otro código
 
 ## ¿Qué aprendí?
+- Leer caracteres del shell utilizando el buffer
+- Interpretar una "p↵" para ejecutar el comando anterior
+- Función de fork
 
 ## URL del commit:
+https://github.com/emamex98/os2019/commit/698473fd26248505d70100f61800c9019535a85d
 
 ## ¿Cómo se relaciona los conceptos anteriores?
+- Llamadas de sistema.
+- Funciones.
