@@ -145,8 +145,12 @@ int
 main(void)
 {
   static char buf[100];
+  static char prevBuf[100];
+  int i;
   int fd;
 
+  prevBuf[0] = '\0';
+   
   // Ensure that three file descriptors are open.
   while((fd = open("console", O_RDWR)) >= 0){
     if(fd >= 3){
@@ -157,16 +161,26 @@ main(void)
 
   // Read and run input commands.
   while(getcmd(buf, sizeof(buf)) >= 0){
-    if(buf[0] == 'c' && buf[1] == 'd' && buf[2] == ' '){
-      // Chdir must be called by the parent, not the child.
-      buf[strlen(buf)-1] = 0;  // chop \n
-      if(chdir(buf+3) < 0)
-        printf(2, "cannot cd %s\n", buf+3);
-      continue;
+    if(buf[0] == 'p' && buf[1] == '\n') {
+      if(prevBuf[0] == '\0') continue;
+      if(fork1() == 0) runcmd(parsecmd(prevBuf));
+      wait();  
+    } else {
+      if(buf[0] == 'c' && buf[1] == 'd' && buf[2] == ' '){
+        // Chdir must be called by the parent, not the child.
+        buf[strlen(buf)-1] = 0;  // chop \n
+        if(chdir(buf+3) < 0)
+          printf(2, "cannot cd %s\n", buf+3);
+        continue;
+      }
+      if(fork1() == 0) runcmd(parsecmd(buf));
+      for(i = 0; buf[i] != '\0'; i += 1) {
+        prevBuf[i] = buf[i];  
+      }
+      prevBuf[i] = '\0';
+      
+      wait();
     }
-    if(fork1() == 0)
-      runcmd(parsecmd(buf));
-    wait();
   }
   exit();
 }
