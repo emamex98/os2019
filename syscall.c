@@ -7,6 +7,10 @@
 #include "x86.h"
 #include "syscall.h"
 
+
+int intCont16 = 0;
+int flag16 = 0;
+
 // User code makes a system call with INT T_SYSCALL.
 // System call number in %eax.
 // Arguments on the stack, from the user call to the C
@@ -142,10 +146,54 @@ syscall(void)
 {
   int num;
   struct proc *curproc = myproc();
+	
+  char *syscall_nombres[]
+					= {"SYS_nada",
+                        "SYS_fork",
+                        "SYS_exit",
+                        "SYS_wait",
+                        "SYS_pipe",
+                        "SYS_read",
+                        "SYS_kill",
+                        "SYS_exec",
+                        "SYS_fstat",
+                        "SYS_chdir",
+                        "SYS_dup",
+                        "SYS_getpid",
+                        "SYS_sbrk",
+                        "SYS_sleep",
+                        "SYS_uptime",
+                        "SYS_open",
+                        "SYS_write",
+                        "SYS_mknod",
+                        "SYS_unlink",
+                        "SYS_link",
+                        "SYS_mkdir",
+                        "SYS_close",
+                        "SYS_shutdown",
+                        "SYS_reboot",
+                        "SYS_setpriority",
+                        "SYS_getpriority"};
 
   num = curproc->tf->eax;
   if(num > 0 && num < NELEM(syscalls) && syscalls[num]) {
+ 
+	if(num != 16 || flag16 == 1){
+		cprintf(" Syscall: %d → ", num);
+		cprintf(syscall_nombres[num]);
+		cprintf("\n");
+	} else {
+		intCont16 = intCont16 + 1;
+	}
+	  
+	if(intCont16 >= 1416) {
+		cprintf("\nSe llamo %d veces a:\n - Syscall: 16 → SYS_write", intCont16);
+		intCont16 = 0;
+		flag16 = 1;
+  	}	
+	  
     curproc->tf->eax = syscalls[num]();
+	  
   } else {
     cprintf("%d %s: unknown sys call %d\n",
             curproc->pid, curproc->name, num);
