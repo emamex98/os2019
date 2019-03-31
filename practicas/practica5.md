@@ -12,7 +12,7 @@ Investigar y practicar diferentes IPC, tales como:
     - Dos o más procesos que se comunican con un IPC
     
 # URL de commit
+https://github.com/emamex98/os2019/commit/76cb35fa2c750976275a756d75191dfccbf8da4e
   
 # ¿Qué aprendí?
-
-Te amo Shiann <3
+Experimentamos con diferentes tipos de IPC (Interproccess Communications)
