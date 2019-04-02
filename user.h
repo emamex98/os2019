@@ -27,6 +27,7 @@ int shutdown(void);
 int reboot(void);
 int setpriority(int,int);
 int getpriority(int);
+int date(struct rtcdate *r);
 
 // ulib.c
 int stat(const char*, struct stat*);

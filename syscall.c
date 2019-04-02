@@ -9,7 +9,6 @@
 
 
 int intCont16 = 0;
-int flag16 = 0;
 
 // User code makes a system call with INT T_SYSCALL.
 // System call number in %eax.
@@ -111,6 +110,7 @@ extern int sys_shutdown(void);
 extern int sys_reboot(void);
 extern int sys_setpriority(void);
 extern int sys_getpriority(void);
+extern int sys_date(void);
 
 static int (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
@@ -139,6 +139,7 @@ static int (*syscalls[])(void) = {
 [SYS_reboot]   sys_reboot,
 [SYS_setpriority] sys_setpriority,
 [SYS_getpriority] sys_getpriority, 
+[SYS_date]    sys_date,
 };
 
 void
@@ -173,12 +174,13 @@ syscall(void)
                         "SYS_shutdown",
                         "SYS_reboot",
                         "SYS_setpriority",
-                        "SYS_getpriority"};
+                        "SYS_getpriority",
+					  	"SYS_date"};
 
   num = curproc->tf->eax;
   if(num > 0 && num < NELEM(syscalls) && syscalls[num]) {
  
-	if(num != 16 || flag16 == 1){
+	if(num != 16){
 		cprintf(" Syscall: %d → ", num);
 		cprintf(syscall_nombres[num]);
 		cprintf("\n");
@@ -189,8 +191,7 @@ syscall(void)
 	if(intCont16 >= 1416) {
 		cprintf("\nSe llamo %d veces a:\n - Syscall: 16 → SYS_write", intCont16);
 		intCont16 = 0;
-		flag16 = 1;
-  	}	
+  	}
 	  
     curproc->tf->eax = syscalls[num]();
 	  
